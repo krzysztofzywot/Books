@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block body %}
+<form action="{{ url_for('login') }}" method="post">
+  <div class="form-group">
+    <label for="exampleUsername">Username</label>
+    <input type="text" class="form-control" name="username" placeholder="Username">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+{% if error %}
+<div class="alert alert-warning" role="alert">
+  Username and/or password is not correct.
+</div>
+{% endif %}
+{% endblock %}

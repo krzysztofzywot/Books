@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block body %}
+{% if displayForm %}
+<form action="{{ url_for('register') }}" method="post">
+  <div class="form-group">
+    <label for="exampleUsername">Enter username</label>
+    <input type="text" class="form-control" name="username" placeholder="Username">
+  </div>
+  {% if alertUsername %}
+  <div class="alert alert-danger" role="alert">
+    {{ alertUsername }}
+  </div>
+  {% endif %}
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Password">
+  </div>
+  {% if alertPassword %}
+  <div class="alert alert-danger" role="alert">
+    {{ alertPassword }}
+  </div>
+  {% endif %}
+  <div class="form-group">
+    <label for="exampleInputPassword2">Repeat Password</label>
+    <input type="password" class="form-control" name="passRepeat" placeholder="Repeat Password">
+  </div>
+  {% if alertPassRepeat %}
+  <div class="alert alert-danger" role="alert">
+    {{ alertPassRepeat }}
+  </div>
+  {% endif %}
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% else %}
+<!-- This will be displayed if the user has successfully registered -->
+<h4><center>{{ successMessage|safe }}</center></h4>
+{% endif %}
+{% endblock %}

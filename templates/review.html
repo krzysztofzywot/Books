@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block body %}
+
+<form action="{{ url_for('review', id=id) }}" method="post">
+
+  <div class="form-group">
+    <label>Select rating</label>
+    <select class="form-control" name="rating">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Review</label>
+    <textarea class="form-control" name="review" rows="3" maxlength="1000"></textarea>
+  </div>
+  {% if alert %}
+  <div class="alert alert-danger" role="alert">
+    {{ alert }}
+  </div>
+  {% endif %}
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

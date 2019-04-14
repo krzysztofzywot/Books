@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ book.title }}
+{% endblock %}
+
+{% block body %}
+
+<h2><i>{{ book.title }}</i></h2>
+<p>
+<ul>
+  <li><b>Author:</b> {{ book.name }}</li>
+  <li><b>Publication year:</b> {{ book.publication_year }}</li>
+  <li><b>ISBN:</b> {{ book.isbn }}</li>
+  <li><b>Average rating:</b> {{ avg_rating }} based on {{ number_of_ratings }} ratings</li>
+  <li><b>GoodReads average rating:</b> {{ gr_avg_rating }} based on {{ gr_number_of_ratings }} ratings</li>
+</ul>
+<h6><a href="{{ url_for('review', id=id) }}">Submit a review for this book!</a></h6>
+  <br>
+  <h3>User reviews:</h3>
+</p>
+
+  {% for review in reviews %}
+  <div class="container">
+    <div class="row">
+      <div class="col" id="review">
+        <b>Username:</b> &nbsp; {{ review.username }} &emsp; <b>Date:</b> &nbsp; {{ review.date|datetimeformat("%B %d, %Y") }}
+        <br>
+        <b>User's rating:</b> &nbsp; {{ review.rating }}
+        <br>
+        {{ review.review }}
+        </div>
+    </div>
+  </div>
+  <br>
+  {% else %}
+  <h5>No reviews yet.</h5>
+  {% endfor %}
+
+{% endblock %}
